@@ -38,7 +38,7 @@ class HomeController extends Controller
      * @return string
      */
     public function getRankImage($data)
-   {
+    {
        $eight = (string)8;
        $thirteen = (string)13;
 
@@ -50,9 +50,36 @@ class HomeController extends Controller
            case 7: return 'https://rocketleague.tracker.network/Images/RL/ranked/s4-7.png';
            case 8: return 'https://rocketleague.tracker.network/Images/RL/ranked/s4-8.png';
        }
-   }
+    }
 
+    /**
+     * @param $data
+     * @return mixed
+     */
+    public function getDivision($data)
+    {
+        $eight = (string)8;
+        $thirteen = (string)13;
 
+        return $data->rankedSeasons->$eight->$thirteen->division;
+    }
 
-
+    /**
+     * @param $number
+     * @return string
+     */
+    public function numberToRomanRepresentation($number) {
+        $map = array('M' => 1000, 'CM' => 900, 'D' => 500, 'CD' => 400, 'C' => 100, 'XC' => 90, 'L' => 50, 'XL' => 40, 'X' => 10, 'IX' => 9, 'V' => 5, 'IV' => 4, 'I' => 1);
+        $returnValue = '';
+        while ($number > 0) {
+            foreach ($map as $roman => $int) {
+                if($number >= $int) {
+                    $number -= $int;
+                    $returnValue .= $roman;
+                    break;
+                }
+            }
+        }
+        return $returnValue;
+    }
 }

@@ -181,7 +181,7 @@
             </div>
 
 
-            <div class="col-md-10 col-md-offset-1" style="margin-top: 40px; margin-bottom: 80px;">
+            <div class="col-md-10 col-md-offset-1" style="margin-top: 40px; margin-bottom: 20px;">
 
                 <div class="box">
                     <div class="row">
@@ -230,6 +230,12 @@
                             <div class="col-md-2" style="border-right: 1px dashed #d8d6d0;">
                                 <div class="col-md-12 text-center">
                                     <img src="{{ app('App\Http\Controllers\HomeController')->getRankImage($p) }}" style="max-width: 90px;">
+                                    <span style="color: white;">
+                                        Division
+                                        {{
+                                            app('App\Http\Controllers\HomeController')->numberToRomanRepresentation(app('App\Http\Controllers\HomeController')->getDivision($p) )
+                                        }}
+                                    </span>
                                 </div>
                             </div>
                             <div class="col-md-2" style="border-right: 1px dashed #d8d6d0;">
@@ -256,6 +262,15 @@
                     @endforeach
                 </div>
 
+            </div>
+
+
+            <div class="col-md-8 col-md-offset-2" style="margin-bottom: 40px; margin-top: 20px;">
+                <div class="box">
+                    <div class="col-md-12 text-center" style="color: white; ">
+                        <img src="https://i.imgur.com/lRNmB6a.png" style="max-width: 180px;">
+                    </div>
+                </div>
             </div>
 
         </div>
