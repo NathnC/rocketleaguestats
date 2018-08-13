@@ -233,7 +233,7 @@
                                     <span style="color: white;">
                                         Division
                                         {{
-                                            app('App\Http\Controllers\HomeController')->numberToRomanRepresentation(app('App\Http\Controllers\HomeController')->getDivision($p) )
+                                            app('App\Http\Controllers\HomeController')->getDivision($p)
                                         }}
                                     </span>
                                 </div>
