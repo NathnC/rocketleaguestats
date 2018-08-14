@@ -77,8 +77,14 @@
     </head>
     <body>
 
+        <audio id="myVideo" autoplay loop>
+            <source src="{{ url('song.mp3') }}">
+        </audio>
 
-
+<script>
+    var vid = document.getElementById("myVideo");
+    vid.volume = 0.05;
+</script>
 
 
         <div class="container" style="margin-top: 30px;">
@@ -197,12 +203,12 @@
                         </div>
                         <div class="col-md-2" style="border-right: 1px dashed #d8d6d0;">
                             <div class="col-md-12 text-center heading">
-                                GOALS
+                                MMR
                             </div>
                         </div>
                         <div class="col-md-2" style="border-right: 1px dashed #d8d6d0;">
                             <div class="col-md-12 text-center heading">
-                                SHOTS
+                                GOALS
                             </div>
                         </div>
                         <div class="col-md-2" style="border-right: 1px dashed #d8d6d0;">
@@ -239,13 +245,30 @@
                                 </div>
                             </div>
                             <div class="col-md-2" style="border-right: 1px dashed #d8d6d0;">
-                                <div class="col-md-12 text-center subheading" style="margin-top: 14.5px; margin-bottom: 14.5px">
-                                    {{ $p->stats->goals }}
+                                <div class="col-md-12 text-center">
+                                    <div class="col-md-12 text-center subheading" style="margin-top: 14.5px; margin-bottom: 14.5px; font-size: 16px;">
+                                        {{
+                                            app('App\Http\Controllers\HomeController')->getRating($p)
+                                        }}
+                                        /
+                                        @php
+                                            $tiers = app('App\Http\Controllers\HomeController')->tierBrakedown();
+                                            $rank = app('App\Http\Controllers\HomeController')->getRank($p);
+                                            $diff = $tiers[$rank+1];
+                                        @endphp
+                                        {{ $diff }}
+                                    </div>
+                                    <span style="color: white; font-size: 12px;">
+                                        Next Rank:
+                                        {{
+                                            app('App\Http\Controllers\HomeController')->winsUntilNextRank($p)
+                                        }} consecutive wins
+                                    </span>
                                 </div>
                             </div>
                             <div class="col-md-2" style="border-right: 1px dashed #d8d6d0;">
                                 <div class="col-md-12 text-center subheading" style="margin-top: 14.5px; margin-bottom: 14.5px">
-                                    {{ $p->stats->shots }}
+                                    {{ $p->stats->goals }}
                                 </div>
                             </div>
                             <div class="col-md-2" style="border-right: 1px dashed #d8d6d0;">
